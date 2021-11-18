@@ -1,4 +1,5 @@
 import dotenv from 'dotenv';
+import cors from 'cors';
 import express from 'express';
 import entriesRouter from './routes/entries.js';
 import { connectDB } from './db/connect.js';
@@ -10,6 +11,7 @@ const app = express();
 const port = process.env.PORT || 5000;
 
 // middleware
+app.use(cors());
 app.use(express.json());
 app.use(express.static('./public'));
 
