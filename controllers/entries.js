@@ -41,3 +41,12 @@ export const updateEntry = async (req, res, next) => {
   }
   res.status(200).json({ entry });
 };
+
+export const getEntriesByTag = asyncWrapper(async (req, res, next) => {
+  const { tag } = req.params;
+  const entries = await Entry.find({ tags: tag }).exec();
+  if (!entries) {
+    return next(createCustomError(`No entires tagged with ${tag}`, 404));
+  }
+  res.status(200).json({ entries });
+});

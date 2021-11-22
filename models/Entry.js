@@ -7,7 +7,7 @@ const EntrySchema = new mongoose.Schema({
     trim: true,
   },
   body: { type: String, default: "There's nothing here :(" },
-  tags: { type: Array, default: [] },
+  tags: { type: Array },
   dateCreated: { type: Date, default: new Date() },
   dateUpdated: { type: Date, default: new Date() },
 });
