@@ -8,8 +8,9 @@ const EntrySchema = new mongoose.Schema({
   },
   body: { type: String, default: "There's nothing here :(" },
   tags: { type: Array },
-  dateCreated: { type: Date, default: new Date() },
-  dateUpdated: { type: Date, default: new Date() },
+  dateCreated: { type: Date },
+  dateUpdated: { type: Date },
+  featuredImage: { type: String },
 });
 
 export default mongoose.model('Entry', EntrySchema);
