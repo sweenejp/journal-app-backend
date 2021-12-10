@@ -1,4 +1,4 @@
-const mongoose = require('mongoose');
+import mongoose from 'mongoose';
 
 const EntrySchema = new mongoose.Schema({
   title: {
@@ -13,4 +13,5 @@ const EntrySchema = new mongoose.Schema({
   featuredImage: { type: String },
 });
 
-module.exports = mongoose.model('Entry', EntrySchema);
+const Entry = mongoose.model('Entry', EntrySchema);
+export default Entry;

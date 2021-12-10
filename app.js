@@ -1,16 +1,17 @@
-require('dotenv').config();
-require('express-async-errors');
-const cors = require('cors');
-const connectDB = require('./db/connect');
-const errorHandlerMiddleware = require('./middleware/error-handler.js');
-const notFoundMiddleware = require('./middleware/not-found.js');
+import dotenv from 'dotenv';
+dotenv.config();
+import 'express-async-errors';
+import cors from 'cors';
+import connectDB from './db/connect.js';
+import errorHandlerMiddleware from './middleware/error-handler.js';
+import notFoundMiddleware from './middleware/not-found.js';
 
-const express = require('express');
+import express from 'express';
 const app = express();
 
 // routers
-const entriesRouter = require('./routes/entries');
-const authRouter = require('./routes/auth');
+import entriesRouter from './routes/entries.js';
+import authRouter from './routes/auth.js';
 
 // middleware
 app.use(cors());
