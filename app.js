@@ -12,6 +12,7 @@ const app = express();
 // routers
 import entriesRouter from './routes/entries.js';
 import authRouter from './routes/auth.js';
+import authMiddleware from './middleware/authentication.js';
 
 // middleware
 app.use(cors());
@@ -19,7 +20,7 @@ app.use(express.json());
 app.use(express.static('./public'));
 
 // routes
-app.use('/api/v1/entries', entriesRouter);
+app.use('/api/v1/entries', authMiddleware, entriesRouter);
 app.use('/api/v1/auth', authRouter);
 
 // error handler middleware
