@@ -15,7 +15,7 @@ export const createEntry = async (req, res) => {
   res.status(StatusCodes.CREATED).json({ entry });
 };
 
-export const getEntry = async (req, res, next) => {
+export const getEntry = async (req, res) => {
   const { userId } = req.user;
   const { entryId } = req.params;
   const entry = await Entry.findOne({ _id: entryId, createdBy: userId });
@@ -25,7 +25,7 @@ export const getEntry = async (req, res, next) => {
   res.status(StatusCodes.OK).json({ entry });
 };
 
-export const deleteEntry = async (req, res, next) => {
+export const deleteEntry = async (req, res) => {
   const { userId } = req.user;
   const { entryId } = req.params;
   const entry = await Entry.findOneAndDelete({
@@ -38,7 +38,7 @@ export const deleteEntry = async (req, res, next) => {
   res.status(StatusCodes.OK).send(`Deleted entry ${entryId}`);
 };
 
-export const updateEntry = async (req, res, next) => {
+export const updateEntry = async (req, res) => {
   const { userId } = req.user;
   const { entryId } = req.params;
   const { title } = req.body;
