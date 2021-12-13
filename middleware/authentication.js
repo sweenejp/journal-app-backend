@@ -12,7 +12,7 @@ const authMiddleware = (req, res, next) => {
   try {
     const payload = jwt.verify(token, process.env.JWT_SECRET);
     // attach the user to the job routes
-    req.user = { userID: payload.userID, name: payload.name };
+    req.user = { userId: payload.userId, name: payload.name };
 
     next();
   } catch (error) {
