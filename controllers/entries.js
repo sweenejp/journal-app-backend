@@ -5,7 +5,7 @@ import NotFoundError from '../errors/not-found.js';
 
 export const getAllEntries = async (req, res) => {
   const { userId } = req.user;
-  const entries = await Entry.find({ createdBy: userId });
+  const entries = await Entry.find({ createdBy: userId }).sort('-updatedAt');
   res.status(StatusCodes.OK).json({ entries });
 };
 
