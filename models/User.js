@@ -25,6 +25,18 @@ const UserSchema = new mongoose.Schema({
     required: [true, 'Please provide a password'],
     minlength: 3,
   },
+  settings: {
+    type: Object,
+    default: {
+      sortParam: 'createdAtAsc',
+      showTags: true,
+      showFeaturedImage: true,
+      showBody: false,
+      showUpdatedAt: false,
+      showCreatedAt: true,
+      colorMode: 'light',
+    },
+  },
 });
 
 // mongoose middleware
