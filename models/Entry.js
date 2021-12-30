@@ -10,11 +10,12 @@ const EntrySchema = new mongoose.Schema(
     body: { type: String, default: "There's nothing here :(" },
     tags: { type: Array },
     featuredImage: { type: String },
-    // tie job to the user that created the job
+    inTrash: { type: Boolean },
+    // tie job to the user that created the entry
     createdBy: {
       type: mongoose.Types.ObjectId,
       ref: 'User',
-      required: [true, 'Missing a user associated with this job'],
+      required: [true, 'Missing a user associated with this entry'],
     },
   },
   { timestamps: true }
