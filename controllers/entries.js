@@ -38,6 +38,16 @@ export const deleteEntry = async (req, res) => {
   res.status(StatusCodes.OK).send(`Deleted entry ${entryId}`);
 };
 
+export const deleteEntries = async (req, res) => {
+  const { userId } = req.user;
+  const entryIds = req.body;
+  const deletedEntries = await Entry.deleteMany({
+    _id: { $in: entryIds },
+    createdBy: userId,
+  });
+  res.status(StatusCodes.OK).json({ deletedEntries });
+};
+
 export const updateEntry = async (req, res) => {
   const { userId } = req.user;
   const { entryId } = req.params;
