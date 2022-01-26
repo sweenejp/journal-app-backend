@@ -20,8 +20,7 @@ const errorHandlerMiddleware = (err, req, res, next) => {
     customError.statusCode = StatusCodes.BAD_REQUEST;
     customError.msg = `A user with email address ${err.keyValue.email} already exists. If you have already registered, try logging in instead.`;
   }
-  // return res.status(customError.statusCode).json({ err });
-  return res.status(customError.statusCode).json({ msg: customError.msg });
+  return res.status(customError.statusCode).json(customError.msg);
 };
 
 export default errorHandlerMiddleware;
