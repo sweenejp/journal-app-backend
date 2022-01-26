@@ -28,7 +28,6 @@ const UserSchema = new mongoose.Schema({
   settings: {
     type: Object,
     default: {
-      sortParam: 'createdAt--asc',
       showTags: true,
       showFeaturedImage: true,
       showBody: false,
