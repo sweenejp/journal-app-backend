@@ -14,6 +14,7 @@ const app = express();
 
 // routers
 import entriesRouter from './routes/entries.js';
+import publicEntriesRouter from './routes/publicEntries.js';
 import authRouter from './routes/auth.js';
 import userRouter from './routes/user.js';
 
@@ -34,6 +35,7 @@ app.use(xss());
 
 // routes
 app.use('/api/v1/entries', authenticateUser, entriesRouter);
+app.use('/api/v1/public-entries', publicEntriesRouter);
 app.use('/api/v1/user', authenticateUser, userRouter);
 app.use('/api/v1/auth', authRouter);
 

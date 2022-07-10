@@ -2,11 +2,38 @@ import { StatusCodes } from 'http-status-codes';
 import Entry from '../models/Entry.js';
 import BadRequestError from '../errors/bad-request.js';
 import NotFoundError from '../errors/not-found.js';
+import User from '../models/User.js';
 
 export const getAllEntries = async (req, res) => {
   const { userId } = req.user;
   const entries = await Entry.find({ createdBy: userId }).sort('-createdAt');
   res.status(StatusCodes.OK).json({ entries });
+};
+
+export const getAllPublicEntries = async (req, res) => {
+  const { userId } = req.params;
+  const user = await User.findOne({ _id: userId });
+  if (!user) {
+    throw new NotFoundError(`No user with id ${userId}`);
+  }
+  const entries = await Entry.find({ createdBy: userId, isPublic: true }).sort(
+    '-createdAt'
+  );
+  res.status(StatusCodes.OK).json({ entries });
+};
+
+export const getPublicEntry = async (req, res) => {
+  const { userId, entryId } = req.params;
+  const user = await User.findOne({ _id: userId });
+  if (!user) {
+    throw new NotFoundError(`No user with id ${userId}`);
+  }
+  const entry = await Entry.findOne({
+    createdBy: userId,
+    isPublic: true,
+    _id: entryId,
+  });
+  res.status(StatusCodes.OK).json({ entry });
 };
 
 export const createEntry = async (req, res) => {

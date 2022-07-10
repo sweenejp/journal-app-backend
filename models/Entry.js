@@ -11,6 +11,7 @@ const EntrySchema = new mongoose.Schema(
     tags: { type: Array },
     featuredImage: { type: String },
     inTrash: { type: Boolean },
+    isPublic: { type: Boolean, default: false },
     // tie job to the user that created the entry
     createdBy: {
       type: mongoose.Types.ObjectId,
