@@ -6,7 +6,7 @@ export const getUser = async (req, res) => {
   const user = await User.findOne({ _id: userId });
   res
     .status(StatusCodes.OK)
-    .json({ user: { name: user.name, settings: user.settings } });
+    .json({ user: { name: user.name, settings: user.settings, id: userId } });
 };
 
 export const updateUser = async (req, res) => {
